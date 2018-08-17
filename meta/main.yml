@@ -1,0 +1,23 @@
+---
+
+galaxy_info:
+  role_name: locale
+  author: Christian Krause
+  description: 'configure locale and virtual console keyboard'
+  company: German Centre for Integrative Biodiversity Research (iDiv)
+  license: MIT
+  min_ansible_version: 2.4
+
+  platforms:
+    - name: ArchLinux
+    - name: EL
+      versions:
+        - 6
+        - 7
+
+  galaxy_tags:
+    - keyboard
+    - locale
+    - locales
+
+...

@@ -1,0 +1,14 @@
+{% if system_keyboard_layout is defined %}
+{% if system_keyboard_variant is defined %}
+KEYMAP="{{ system_keyboard_layout }}-{{ system_keyboard_variant }}"
+{% else %}
+KEYMAP="{{ system_keyboard_layout }}"
+{% endif %}
+{% else %}
+KEYMAP=us
+{% endif %}
+{% if system_font is defined %}
+FONT="{{ system_font }}"
+{% else %}
+FONT="latarcyrheb-sun16"
+{% endif %}

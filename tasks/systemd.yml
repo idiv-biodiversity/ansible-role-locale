@@ -1,0 +1,19 @@
+---
+
+- name: set system language (/etc/locale.conf)
+  template:
+    src: locale.conf.j2
+    dest: /etc/locale.conf
+    owner: root
+    group: root
+    mode: 0644
+
+- name: configure virtual console keyboard (/etc/vconsole.conf)
+  template:
+    src: vconsole.conf.j2
+    dest: /etc/vconsole.conf
+    owner: root
+    group: root
+    mode: 0644
+
+...
