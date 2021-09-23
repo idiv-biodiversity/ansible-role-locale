@@ -1,9 +1,15 @@
 ---
 
-- name: set system language (/etc/locale.conf)
+- name: include OS specific vars
+  include_vars: '{{ ansible_os_family | lower }}.yml'
+  when: ansible_os_family == 'Archlinux' or
+        ansible_os_family == 'Debian' or
+        ansible_os_family == 'RedHat'
+
+- name: set system language (/etc/locale.conf | /etc/default/locale)
   template:
     src: locale.conf.j2
-    dest: /etc/locale.conf
+    dest: '{{ __locale_conf_path }}'
     owner: root
     group: root
     mode: 0644
@@ -15,5 +21,14 @@
     owner: root
     group: root
     mode: 0644
+
+- name: configure keyboard (/etc/default/keyboard) on debian likes
+  template:
+    src: keyboard.j2
+    dest: /etc/default/keyboard
+    owner: root
+    group: root
+    mode: 0644
+  when: ansible_os_family == 'Debian'
 
 ...
