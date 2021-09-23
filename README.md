@@ -47,6 +47,8 @@ system_keyboard_layout: 'de'
 system_keyboard_model: 'pc105'
 system_keyboard_type: 'pc'
 system_keyboard_variant: 'nodeadkeys'
+system_keyboard_options: 'terminate:ctrl_alt_bksp Ctrl+Alt+Backspace'
+system_keyboard_backspace_behaviour: 'guess'
 ```
 
 ### Virtual Console Font

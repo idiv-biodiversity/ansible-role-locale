@@ -1,0 +1,13 @@
+{% if system_keyboard_model is defined %}
+XKBMODEL="{{ system_keyboard_model }}"
+{% endif %}
+{% if system_keyboard_layout is defined %}
+XKBLAYOUT="{{ system_keyboard_layout }}"
+{% endif %}
+{% if system_keyboard_variant is defined %}
+XKBVARIANT="{{ system_keyboard_variant }}"
+{% endif %}
+{% if system_keyboard_options is defined %}
+XKBOPTIONS="{{ system_keyboard_options }}"
+{% endif %}
+BACKSPACE="{{ system_keyboard_backspace_behaviour | default('guess') }}"
