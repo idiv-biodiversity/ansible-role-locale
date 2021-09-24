@@ -5,30 +5,30 @@
   check_mode: no
   changed_when: no
   failed_when: no
-  register: locale_localectl_cmd
+  register: __locale_localectl_cmd
 
 - name: check if /etc/sysconfig exists
   stat:
     path: /etc/sysconfig
   changed_when: no
   failed_when: no
-  register: locale_sysconfig_dir
+  register: __locale_sysconfig_dir
 
 - name: set locale configuration to systemd
   set_fact:
-    locale_configuration: systemd
+    __locale_configuration: systemd
   when: >
-    locale_localectl_cmd.rc == 0
+    __locale_localectl_cmd.rc == 0
 
 - name: set locale configuration to sysconfig
   set_fact:
     locale_configuration: sysconfig
   when: >
-    locale_localectl_cmd.rc != 0 and
-    locale_sysconfig_dir.stat.exists and
-    locale_sysconfig_dir.stat.isdir
+    __locale_localectl_cmd.rc != 0 and
+    __locale_sysconfig_dir.stat.exists and
+    __locale_sysconfig_dir.stat.isdir
 
 - name: include locale configuration tasks
-  include_tasks: '{{ locale_configuration }}.yml'
+  include_tasks: '{{ __locale_configuration }}.yml'
 
 ...
