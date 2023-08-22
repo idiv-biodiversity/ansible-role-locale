@@ -11,6 +11,7 @@
     owner: root
     group: root
     mode: 0644
+  become: yes
 
 - name: configure virtual console keyboard (/etc/vconsole.conf)
   ansible.builtin.template:
@@ -19,6 +20,7 @@
     owner: root
     group: root
     mode: 0644
+  become: yes
 
 - name: configure keyboard (/etc/default/keyboard) on debian likes
   ansible.builtin.template:
@@ -27,6 +29,7 @@
     owner: root
     group: root
     mode: 0644
+  become: yes
   when:
     - __locale_os == 'debian'
 
