@@ -27,7 +27,7 @@ Table of Contents
 Requirements
 ------------
 
-- Ansible 2.4+
+- Ansible 2.9
 
 
 Role Variables
@@ -72,7 +72,7 @@ Add to `requirements.yml`:
 ```yml
 ---
 
-- src: idiv-biodiversity.locale
+- src: idiv_biodiversity.locale
 
 ...
 ```
@@ -94,7 +94,7 @@ Write a top-level playbook:
   hosts: head
 
   roles:
-    - role: idiv-biodiversity.locale
+    - role: idiv_biodiversity.locale
       tags:
         - locale
 
@@ -110,7 +110,7 @@ Define the role dependency in `meta/main.yml`:
 
 dependencies:
 
-  - role: idiv-biodiversity.locale
+  - role: idiv_biodiversity.locale
     tags:
       - locale
 

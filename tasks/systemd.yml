@@ -1,13 +1,13 @@
 ---
 
 - name: include OS specific vars
-  include_vars: '{{ ansible_os_family | lower }}.yml'
+  ansible.builtin.include_vars: '{{ ansible_os_family | lower }}.yml'
   when: ansible_os_family == 'Archlinux' or
         ansible_os_family == 'Debian' or
         ansible_os_family == 'RedHat'
 
 - name: set system language (/etc/locale.conf | /etc/default/locale)
-  template:
+  ansible.builtin.template:
     src: locale.conf.j2
     dest: '{{ __locale_conf_path }}'
     owner: root
@@ -15,7 +15,7 @@
     mode: 0644
 
 - name: configure virtual console keyboard (/etc/vconsole.conf)
-  template:
+  ansible.builtin.template:
     src: vconsole.conf.j2
     dest: /etc/vconsole.conf
     owner: root
@@ -23,7 +23,7 @@
     mode: 0644
 
 - name: configure keyboard (/etc/default/keyboard) on debian likes
-  template:
+  ansible.builtin.template:
     src: keyboard.j2
     dest: /etc/default/keyboard
     owner: root

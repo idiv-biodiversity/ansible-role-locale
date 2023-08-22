@@ -1,27 +1,27 @@
 ---
 
 - name: check if localectl exists
-  command: which localectl
+  ansible.builtin.command: which localectl
   check_mode: no
   changed_when: no
   failed_when: no
   register: __locale_localectl_cmd
 
 - name: check if /etc/sysconfig exists
-  stat:
+  ansible.builtin.stat:
     path: /etc/sysconfig
   changed_when: no
   failed_when: no
   register: __locale_sysconfig_dir
 
 - name: set locale configuration to systemd
-  set_fact:
+  ansible.builtin.set_fact:
     __locale_configuration: systemd
   when: >
     __locale_localectl_cmd.rc == 0
 
 - name: set locale configuration to sysconfig
-  set_fact:
+  ansible.builtin.set_fact:
     locale_configuration: sysconfig
   when: >
     __locale_localectl_cmd.rc != 0 and
@@ -29,6 +29,6 @@
     __locale_sysconfig_dir.stat.isdir
 
 - name: include locale configuration tasks
-  include_tasks: '{{ __locale_configuration }}.yml'
+  ansible.builtin.include_tasks: '{{ __locale_configuration }}.yml'
 
 ...

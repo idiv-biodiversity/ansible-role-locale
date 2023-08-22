@@ -1,7 +1,7 @@
 ---
 
 - name: configure system language (/etc/sysconfig/i18n)
-  template:
+  ansible.builtin.template:
     src: i18n.conf.j2
     dest: /etc/sysconfig/i18n
     owner: root
@@ -9,7 +9,7 @@
     mode: 0644
 
 - name: configure virtual console keyboard (/etc/sysconfig/keyboard)
-  template:
+  ansible.builtin.template:
     src: keyboard.conf.j2
     dest: /etc/sysconfig/keyboard
     owner: root
