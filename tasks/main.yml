@@ -1,5 +1,9 @@
 ---
 
+- name: include OS-specific vars
+  ansible.builtin.include_vars: >-
+    {{ lookup('ansible.builtin.first_found', __locale_vars_files) }}
+
 - name: check if localectl exists
   ansible.builtin.command: which localectl
   check_mode: no

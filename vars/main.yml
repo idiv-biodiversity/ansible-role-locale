@@ -1,0 +1,40 @@
+---
+
+# -----------------------------------------------------------------------------
+# distro / os handles
+# -----------------------------------------------------------------------------
+
+__locale_distro: >-
+  {{ ansible_distribution | lower }}
+
+__locale_os: >-
+  {{ ansible_os_family | lower }}
+
+__locale_distro_version: >-
+  {{ __locale_distro }}_{{ ansible_distribution_major_version }}
+
+__locale_os_version: >-
+  {{ __locale_os }}_{{ ansible_distribution_major_version }}
+
+# -----------------------------------------------------------------------------
+# first found snippets
+# -----------------------------------------------------------------------------
+
+__locale_first_found:
+  - '{{ __locale_distro_version }}'
+  - '{{ __locale_os_version }}'
+  - '{{ __locale_distro }}'
+  - '{{ __locale_os }}'
+  - default
+
+__locale_vars_files:
+  files: >-
+    {{
+      __locale_first_found |
+        map('regex_replace', '$', '.yml') |
+        list
+    }}
+  paths:
+    - vars
+
+...

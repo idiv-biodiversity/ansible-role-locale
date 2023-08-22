@@ -1,11 +1,5 @@
 ---
 
-- name: include OS specific vars
-  ansible.builtin.include_vars: '{{ ansible_os_family | lower }}.yml'
-  when: ansible_os_family == 'Archlinux' or
-        ansible_os_family == 'Debian' or
-        ansible_os_family == 'RedHat'
-
 - name: set system language (/etc/locale.conf | /etc/default/locale)
   ansible.builtin.template:
     src: locale.conf.j2
@@ -29,6 +23,6 @@
     owner: root
     group: root
     mode: 0644
-  when: ansible_os_family == 'Debian'
+  when: __locale_os == 'debian'
 
 ...
