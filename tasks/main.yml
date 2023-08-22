@@ -4,35 +4,30 @@
   ansible.builtin.include_vars: >-
     {{ lookup('ansible.builtin.first_found', __locale_vars_files) }}
 
-- name: check if localectl exists
-  ansible.builtin.command: which localectl
-  check_mode: no
-  changed_when: no
-  failed_when: no
-  register: __locale_localectl_cmd
+- name: set system language (/etc/locale.conf | /etc/default/locale)
+  ansible.builtin.template:
+    src: locale.conf.j2
+    dest: '{{ __locale_conf_path }}'
+    owner: root
+    group: root
+    mode: 0644
 
-- name: check if /etc/sysconfig exists
-  ansible.builtin.stat:
-    path: /etc/sysconfig
-  changed_when: no
-  failed_when: no
-  register: __locale_sysconfig_dir
+- name: configure virtual console keyboard (/etc/vconsole.conf)
+  ansible.builtin.template:
+    src: vconsole.conf.j2
+    dest: /etc/vconsole.conf
+    owner: root
+    group: root
+    mode: 0644
 
-- name: set locale configuration to systemd
-  ansible.builtin.set_fact:
-    __locale_configuration: systemd
-  when: >
-    __locale_localectl_cmd.rc == 0
-
-- name: set locale configuration to sysconfig
-  ansible.builtin.set_fact:
-    locale_configuration: sysconfig
-  when: >
-    __locale_localectl_cmd.rc != 0 and
-    __locale_sysconfig_dir.stat.exists and
-    __locale_sysconfig_dir.stat.isdir
-
-- name: include locale configuration tasks
-  ansible.builtin.include_tasks: '{{ __locale_configuration }}.yml'
+- name: configure keyboard (/etc/default/keyboard) on debian likes
+  ansible.builtin.template:
+    src: keyboard.j2
+    dest: /etc/default/keyboard
+    owner: root
+    group: root
+    mode: 0644
+  when:
+    - __locale_os == 'debian'
 
 ...
