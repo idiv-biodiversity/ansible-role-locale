@@ -4,7 +4,7 @@
   ansible.builtin.include_vars: >-
     {{ lookup('ansible.builtin.first_found', __locale_vars_files) }}
 
-- name: set system language (/etc/locale.conf | /etc/default/locale)
+- name: 'set system language in {{ __locale_conf_path }}'
   ansible.builtin.template:
     src: locale.conf.j2
     dest: '{{ __locale_conf_path }}'
@@ -13,7 +13,7 @@
     mode: 0644
   become: yes
 
-- name: configure virtual console keyboard (/etc/vconsole.conf)
+- name: configure virtual console keyboard in /etc/vconsole.conf
   ansible.builtin.template:
     src: vconsole.conf.j2
     dest: /etc/vconsole.conf
@@ -22,7 +22,7 @@
     mode: 0644
   become: yes
 
-- name: configure keyboard (/etc/default/keyboard) on debian likes
+- name: configure keyboard in /etc/default/keyboard
   ansible.builtin.template:
     src: keyboard.j2
     dest: /etc/default/keyboard
