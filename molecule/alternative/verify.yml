@@ -1,0 +1,25 @@
+---
+
+- name: verify
+  hosts: all
+  tasks:
+
+    - name: check if localectl status works
+      ansible.builtin.command: localectl status
+      changed_when: no
+      register: __locale_localectl_status
+
+    - name: debug localectl status
+      ansible.builtin.debug:
+        var: __locale_localectl_status
+
+    - name: assert on localectl status
+      ansible.builtin.assert:
+        that:
+          - not __locale_localectl_status.failed
+          - '"System Locale: LANG=en_GB" in __locale_localectl_status.stdout'
+          - '"VC Keymap: dvorak-programmer" in __locale_localectl_status.stdout'
+          - '"X11 Layout: " in __locale_localectl_status.stdout'
+        success_msg: 'localectl status works'
+
+...

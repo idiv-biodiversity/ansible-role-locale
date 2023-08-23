@@ -20,16 +20,19 @@ galaxy_info:
 
     - name: Debian
       versions:
-        - jessie
         - buster
+        - bullseye
+        - bookworm
 
     - name: EL
       versions:
-        - '7'
+        - '8'
+        - '9'
 
     - name: Ubuntu
       versions:
         - focal
+        - jammy
 
   galaxy_tags:
     - keyboard

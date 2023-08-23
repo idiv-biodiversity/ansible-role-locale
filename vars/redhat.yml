@@ -3,7 +3,8 @@
 __locale_conf_path: /etc/locale.conf
 
 __locale_packages:
-  - systemd
-  - systemd-udev
+  - kbd-legacy # keymaps
+  - systemd # localectl
+  - systemd-udev # default /etc/vconsole.conf
 
 ...
