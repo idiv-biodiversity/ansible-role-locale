@@ -15,7 +15,7 @@
 
 - name: configure virtual console keyboard in /etc/vconsole.conf
   ansible.builtin.template:
-    src: vconsole.conf.j2
+    src: '{{ lookup("first_found", __locale_vconsole_templates) }}'
     dest: /etc/vconsole.conf
     owner: root
     group: root

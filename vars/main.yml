@@ -37,4 +37,15 @@ __locale_vars_files:
   paths:
     - vars
 
+__locale_vconsole_templates:
+  files: >-
+    {{
+      __locale_first_found |
+        map('regex_replace', '^', 'vconsole_') |
+        map('regex_replace', '$', '.conf.j2') |
+        list
+    }}
+  paths:
+    - templates
+
 ...

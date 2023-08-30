@@ -5,8 +5,10 @@ KEYMAP="{{ system_keyboard_layout }}-{{ system_keyboard_variant }}"
 KEYMAP="{{ system_keyboard_layout }}"
 {% endif %}
 {% else %}
-KEYMAP=us
+KEYMAP="us"
 {% endif %}
 {% if system_font is defined %}
 FONT="{{ system_font }}"
+{% else %}
+FONT="eurlatgr"
 {% endif %}
