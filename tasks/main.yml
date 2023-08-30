@@ -4,6 +4,14 @@
   ansible.builtin.include_vars: >-
     {{ lookup('ansible.builtin.first_found', __locale_vars_files) }}
 
+- name: install packages
+  ansible.builtin.package:
+    name: '{{ __locale_packages }}'
+    update_cache: '{{ __locale_virtualized }}'
+  become: yes
+  when:
+    - __locale_packages is defined
+
 - name: 'set system language in {{ __locale_conf_path }}'
   ansible.builtin.template:
     src: locale.conf.j2

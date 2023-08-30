@@ -48,4 +48,15 @@ __locale_vconsole_templates:
   paths:
     - templates
 
+# -----------------------------------------------------------------------------
+# other
+# -----------------------------------------------------------------------------
+
+__locale_virtualized: >-
+  {{
+    ansible_facts.virtualization_role == "guest"
+    and
+    ansible_facts.virtualization_type == "docker"
+  }}
+
 ...
