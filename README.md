@@ -43,16 +43,21 @@ system_language: 'en_US.UTF-8'
 
 ```yml
 system_keyboard_layout: 'de'
-system_keyboard_model: 'pc105'
-system_keyboard_variant: 'nodeadkeys'
-system_keyboard_options: 'terminate:ctrl_alt_bksp Ctrl+Alt+Backspace'
-system_keyboard_backspace_behaviour: 'guess'
 ```
 
 ### Virtual Console Font
 
 ```yml
 system_font: 'latarcyrheb-sun16'
+```
+
+### X Keyboard
+
+```yml
+system_keyboard_model: 'pc105'
+system_keyboard_variant: 'nodeadkeys'
+system_keyboard_options: 'terminate:ctrl_alt_bksp Ctrl+Alt+Backspace'
+system_keyboard_backspace_behaviour: 'guess'
 ```
 
 
