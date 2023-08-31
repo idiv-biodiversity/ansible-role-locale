@@ -42,7 +42,7 @@ system_language: 'en_US.UTF-8'
 ### Virtual Console Keyboard
 
 ```yml
-system_keyboard_layout: 'de'
+system_keymap: 'dvorak-programmer'
 ```
 
 ### Virtual Console Font

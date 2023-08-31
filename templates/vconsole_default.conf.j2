@@ -1,9 +1,5 @@
-{% if system_keyboard_layout is defined %}
-{% if system_keyboard_variant is defined %}
-KEYMAP="{{ system_keyboard_layout }}-{{ system_keyboard_variant }}"
-{% else %}
-KEYMAP="{{ system_keyboard_layout }}"
-{% endif %}
+{% if system_keymap is defined %}
+KEYMAP="{{ system_keymap }}"
 {% endif %}
 {% if system_font is defined %}
 FONT="{{ system_font }}"
