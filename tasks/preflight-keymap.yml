@@ -1,0 +1,17 @@
+---
+
+- name: run localectl list-keymaps
+  ansible.builtin.command: localectl list-keymaps
+  check_mode: no
+  changed_when: no
+  register: __localectl_list_keymaps
+
+- name: assert that keymap is installed
+  ansible.builtin.assert:
+    that:
+      - not __localectl_list_keymaps.failed
+      - system_keymap in __localectl_list_keymaps.stdout_lines
+    success_msg: 'keymap {{ system_keymap }} is installed'
+    fail_msg: 'keymap {{ system_keymap }} not installed'
+
+...

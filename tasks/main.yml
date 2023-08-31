@@ -28,6 +28,12 @@
   when:
     - system_language is defined
 
+- name: keymap preflight checks
+  ansible.builtin.include_tasks: preflight-keymap.yml
+  when:
+    - system_keymap is defined
+    - __locale_os != "debian" # localectl list-keymaps unsupported
+
 - name: configure virtual console keyboard in /etc/vconsole.conf
   ansible.builtin.template:
     src: '{{ lookup("first_found", __locale_vconsole_templates) }}'
