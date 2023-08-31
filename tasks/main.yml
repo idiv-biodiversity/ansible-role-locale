@@ -20,6 +20,8 @@
     group: root
     mode: 0644
   become: yes
+  when:
+    - system_language is defined
 
 - name: configure virtual console keyboard in /etc/vconsole.conf
   ansible.builtin.template:
