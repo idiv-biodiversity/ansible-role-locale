@@ -12,6 +12,11 @@
   when:
     - __locale_packages is defined
 
+- name: system language preflight checks
+  ansible.builtin.include_tasks: preflight-locale.yml
+  when:
+    - system_language is defined
+
 - name: 'set system language in {{ __locale_conf_path }}'
   ansible.builtin.template:
     src: locale.conf.j2

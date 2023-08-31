@@ -1,0 +1,17 @@
+---
+
+- name: run localectl list-locales
+  ansible.builtin.command: localectl list-locales
+  check_mode: no
+  changed_when: no
+  register: __localectl_list_locales
+
+- name: assert that system language exists
+  ansible.builtin.assert:
+    that:
+      - not __localectl_list_locales.failed
+      - system_language in __localectl_list_locales.stdout_lines
+    success_msg: 'locale {{ system_language }} is installed'
+    fail_msg: 'locale {{ system_language }} not installed'
+
+...
