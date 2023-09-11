@@ -1,0 +1,30 @@
+---
+
+- name: check on /usr/share/i18n/SUPPORTED
+  ansible.builtin.stat:
+    path: /usr/share/i18n/SUPPORTED
+  register: __locale_supported_path
+
+- name: locale-gen preflight checks
+  ansible.builtin.include_tasks: locale-gen-preflight.yml
+  when:
+    - __locale_supported_path.stat.exists
+
+- name: configure locales in /etc/locale.gen
+  ansible.builtin.template:
+    src: locale.gen.j2
+    dest: /etc/locale.gen
+    owner: root
+    group: root
+    mode: 0644
+  become: yes
+  register: __locale_gen
+
+- name: run locale-gen # noqa no-handler
+  ansible.builtin.command: locale-gen
+  changed_when: yes
+  become: yes
+  when:
+    - __locale_gen.changed
+
+...

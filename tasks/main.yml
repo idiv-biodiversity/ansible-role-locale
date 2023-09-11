@@ -12,6 +12,12 @@
   when:
     - __locale_packages is defined
 
+- name: generate locales
+  ansible.builtin.include_tasks: locale-gen.yml
+  when:
+    - system_locales is defined
+    - __locale_os in ['archlinux', 'debian']
+
 - name: system language preflight checks
   ansible.builtin.include_tasks: preflight-locale.yml
   when:

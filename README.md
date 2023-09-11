@@ -33,6 +33,16 @@ Requirements
 Role Variables
 --------------
 
+### Generating/Installing Locales
+
+```yml
+system_locales:
+  - name: de_DE.UTF-8
+    charset: UTF-8
+  - name: en_US.UTF-8
+    charset: UTF-8
+```
+
 ### Language
 
 ```yml

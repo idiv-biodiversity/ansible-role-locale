@@ -1,0 +1,24 @@
+---
+
+- name: get supported locales from /usr/share/i18n/SUPPORTED
+  ansible.builtin.slurp:
+    src: /usr/share/i18n/SUPPORTED
+  register: __locale_supported_raw
+
+- name: set supported locales fact
+  ansible.builtin.set_fact:
+    __locale_supported: >-
+      {{ (__locale_supported_raw.content | b64decode).splitlines() }}
+
+- name: assert locales are supported
+  ansible.builtin.assert:
+    that: >-
+      '{{ locale.name }} {{ locale.charset }}' in {{ __locale_supported }}
+    success_msg: 'locale "{{ locale.name }} {{ locale.charset }}" is supported'
+    fail_msg: 'locale "{{ locale.name }} {{ locale.charset }}" not supported'
+  loop: '{{ system_locales }}'
+  loop_control:
+    loop_var: locale
+    label: '{{ locale.name }} {{ locale.charset }}'
+
+...
