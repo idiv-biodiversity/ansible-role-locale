@@ -2,4 +2,9 @@
 
 __locale_conf_path: /etc/locale.conf
 
+__locale_packages:
+  - glibc # charmaps, locales, locale-gen
+  - kbd # keymaps and consolefonts
+  - systemd # localectl
+
 ...
