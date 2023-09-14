@@ -25,6 +25,12 @@
     - system_locales is defined
     - __locale_os in ['archlinux', 'debian']
 
+- name: install locales
+  ansible.builtin.include_tasks: locale-install.yml
+  when:
+    - system_locales is defined
+    - __locale_os in ['redhat']
+
 - name: system language preflight checks
   ansible.builtin.include_tasks: preflight-locale.yml
   when:

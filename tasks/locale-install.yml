@@ -1,0 +1,19 @@
+---
+
+- name: set locale packages to install
+  ansible.builtin.set_fact:
+    __locale_langpacks: >-
+      {{
+        system_locales |
+          map(attribute='name') |
+          map('regex_replace', '_.+', '') |
+          map('regex_replace', '^', 'glibc-langpack-') |
+          unique
+      }}
+
+- name: 'install locale packages {{ __locale_langpacks }}'
+  ansible.builtin.package:
+    name: '{{ __locale_langpacks }}'
+  become: yes
+
+...
