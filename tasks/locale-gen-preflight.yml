@@ -13,7 +13,7 @@
 - name: assert locales are supported
   ansible.builtin.assert:
     that: >-
-      '{{ locale.name }} {{ locale.charset }}' in {{ __locale_supported }}
+      '{{ locale.name }} {{ locale.charset }}' in __locale_supported
     success_msg: 'locale "{{ locale.name }} {{ locale.charset }}" is supported'
     fail_msg: 'locale "{{ locale.name }} {{ locale.charset }}" not supported'
   loop: '{{ system_locales }}'
