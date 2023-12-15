@@ -74,27 +74,23 @@ system_keyboard_backspace_behaviour: 'guess'
 Dependencies
 ------------
 
-None.
-
-
-Example Playbook
-----------------
-
-Add to `requirements.yml`:
-
 ```yml
 ---
 
-- src: idiv_biodiversity.locale
+# requirements.yml
+
+roles:
+
+  - name: idiv_biodiversity.locale
+    src: https://github.com/idiv-biodiversity/ansible-role-locale
+    version: vX.Y.Z
 
 ...
 ```
 
-Download:
 
-```console
-$ ansible-galaxy install -r requirements.yml
-```
+Example Playbook
+----------------
 
 ### Top-Level Playbook
 
