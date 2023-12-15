@@ -10,6 +10,10 @@
     __locale_supported: >-
       {{ (__locale_supported_raw.content | b64decode).splitlines() }}
 
+- name: show supported locales
+  ansible.builtin.debug:
+    var: __locale_supported
+
 - name: assert locales are supported
   ansible.builtin.assert:
     that: >-
