@@ -4,14 +4,6 @@
   ansible.builtin.include_vars: >-
     {{ lookup('ansible.builtin.first_found', __locale_vars_files) }}
 
-- name: update package cache
-  ansible.builtin.package:
-    update_cache: yes
-  become: yes
-  when:
-    - __locale_packages is defined
-    - __locale_virtualized
-
 - name: 'install packages {{ __locale_packages }}'
   ansible.builtin.package:
     name: '{{ __locale_packages }}'
