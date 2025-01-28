@@ -34,7 +34,7 @@
     dest: '{{ __locale_conf_path }}'
     owner: root
     group: root
-    mode: 0644
+    mode: '0644'
   become: yes
   when:
     - system_language is defined
@@ -51,7 +51,7 @@
     dest: /etc/vconsole.conf
     owner: root
     group: root
-    mode: 0644
+    mode: '0644'
   become: yes
 
 - name: configure keyboard in /etc/default/keyboard
@@ -60,7 +60,7 @@
     dest: /etc/default/keyboard
     owner: root
     group: root
-    mode: 0644
+    mode: '0644'
   become: yes
   when:
     - __locale_os == 'debian'

@@ -16,7 +16,7 @@
     dest: /etc/locale.gen
     owner: root
     group: root
-    mode: 0644
+    mode: '0644'
   become: yes
   register: __locale_gen
 
