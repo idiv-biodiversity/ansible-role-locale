@@ -6,6 +6,10 @@
   changed_when: no
   register: __localectl_list_locales
 
+- name: show localectl list-locales
+  ansible.builtin.debug:
+    var: __localectl_list_locales
+
 - name: assert that system language exists
   ansible.builtin.assert:
     that:
