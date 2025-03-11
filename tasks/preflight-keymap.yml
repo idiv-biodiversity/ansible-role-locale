@@ -6,6 +6,10 @@
   changed_when: no
   register: __localectl_list_keymaps
 
+- name: show localectl list-keymaps
+  ansible.builtin.debug:
+    var: __localectl_list_keymaps
+
 - name: assert that keymap is installed
   ansible.builtin.assert:
     that:
