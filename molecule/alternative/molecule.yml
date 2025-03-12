@@ -41,24 +41,6 @@ platforms:
     privileged: yes
     pre_build_image: yes
 
-  - name: ubuntu-focal
-    image: geerlingguy/docker-ubuntu2004-ansible
-    command: ${MOLECULE_DOCKER_COMMAND:-""}
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:rw
-    cgroupns_mode: host
-    privileged: yes
-    pre_build_image: yes
-
-  - name: ubuntu-jammy
-    image: geerlingguy/docker-ubuntu2204-ansible
-    command: ${MOLECULE_DOCKER_COMMAND:-""}
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:rw
-    cgroupns_mode: host
-    privileged: yes
-    pre_build_image: yes
-
 provisioner:
   name: ansible
   playbooks:

@@ -29,8 +29,6 @@ jobs:
           - centos-8
           - rocky-8
           - rocky-9
-          - ubuntu-focal
-          - ubuntu-jammy
         scenario:
           - default
           - alternative

@@ -15,7 +15,7 @@
   ansible.builtin.include_tasks: locale-gen.yml
   when:
     - system_locales is defined
-    - __locale_os in ['archlinux', 'debian']
+    - __locale_os in ['archlinux']
 
 - name: install locales
   ansible.builtin.include_tasks: locale-install.yml
@@ -43,7 +43,6 @@
   ansible.builtin.include_tasks: preflight-keymap.yml
   when:
     - system_keymap is defined
-    - __locale_os != "debian" # localectl list-keymaps unsupported
 
 - name: configure virtual console keyboard in /etc/vconsole.conf
   ansible.builtin.template:
@@ -53,16 +52,5 @@
     group: root
     mode: '0644'
   become: yes
-
-- name: configure keyboard in /etc/default/keyboard
-  ansible.builtin.template:
-    src: keyboard.j2
-    dest: /etc/default/keyboard
-    owner: root
-    group: root
-    mode: '0644'
-  become: yes
-  when:
-    - __locale_os == 'debian'
 
 ...

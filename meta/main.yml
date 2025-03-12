@@ -18,21 +18,10 @@ galaxy_info:
       versions:
         - all
 
-    - name: Debian
-      versions:
-        - buster
-        - bullseye
-        - bookworm
-
     - name: EL
       versions:
         - '8'
         - '9'
-
-    - name: Ubuntu
-      versions:
-        - focal
-        - jammy
 
   galaxy_tags:
     - keyboard

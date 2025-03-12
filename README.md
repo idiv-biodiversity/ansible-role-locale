@@ -61,15 +61,6 @@ system_keymap: 'dvorak-programmer'
 system_font: 'latarcyrheb-sun16'
 ```
 
-### X Keyboard
-
-```yml
-system_keyboard_model: 'pc105'
-system_keyboard_variant: 'nodeadkeys'
-system_keyboard_options: 'terminate:ctrl_alt_bksp Ctrl+Alt+Backspace'
-system_keyboard_backspace_behaviour: 'guess'
-```
-
 
 Dependencies
 ------------
