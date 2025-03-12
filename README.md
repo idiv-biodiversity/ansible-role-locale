@@ -11,6 +11,7 @@ Table of Contents
 
 - [Requirements](#requirements)
 - [Role Variables](#role-variables)
+  * [Generating/Installing Locales](#generatinginstalling-locales)
   * [Language](#language)
   * [Virtual Console Keyboard](#virtual-console-keyboard)
   * [Virtual Console Font](#virtual-console-font)
