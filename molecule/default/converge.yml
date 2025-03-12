@@ -5,9 +5,31 @@
 
   pre_tasks:
 
-    - name: update package cache
+    - name: show discovered python interpreter
+      ansible.builtin.debug:
+        var: ansible_facts.discovered_interpreter_python
+
+    - name: show discovered package manager
+      ansible.builtin.debug:
+        var: ansible_facts.pkg_mgr
+
+    - name: update package cache (Arch Linux)
+      community.general.pacman:
+        update_cache: yes
+      when:
+        - ansible_facts.os_family == 'Archlinux'
+      become: yes
+      changed_when: no
+      register: __update_package_cache
+      until: __update_package_cache is success
+      retries: 10
+      delay: 2
+
+    - name: update package cache (other distros)
       ansible.builtin.package:
         update_cache: yes
+      when:
+        - ansible_facts.os_family != 'Archlinux'
       become: yes
       changed_when: no
       register: __update_package_cache
