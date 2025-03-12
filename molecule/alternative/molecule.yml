@@ -61,6 +61,8 @@ platforms:
 
 provisioner:
   name: ansible
+  playbooks:
+    converge: ../default/converge.yml
   inventory:
     group_vars:
       all:
