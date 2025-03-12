@@ -1,51 +1,13 @@
 ---
 
-dependency:
-  name: galaxy
-
-driver:
-  name: docker
-
-platforms:
-
-  - name: archlinux
-    image: carlodepieri/docker-archlinux-ansible:latest
-    command: ${MOLECULE_DOCKER_COMMAND:-""}
-    privileged: yes
-    pre_build_image: yes
-
-  - name: centos-8
-    image: geerlingguy/docker-centos8-ansible
-    command: ${MOLECULE_DOCKER_COMMAND:-""}
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:rw
-    cgroupns_mode: host
-    privileged: yes
-    pre_build_image: yes
-
-  - name: rocky-8
-    image: geerlingguy/docker-rockylinux8-ansible
-    command: ${MOLECULE_DOCKER_COMMAND:-""}
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:rw
-    cgroupns_mode: host
-    privileged: yes
-    pre_build_image: yes
-
-  - name: rocky-9
-    image: geerlingguy/docker-rockylinux9-ansible
-    command: ${MOLECULE_DOCKER_COMMAND:-""}
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:rw
-    cgroupns_mode: host
-    privileged: yes
-    pre_build_image: yes
-
 provisioner:
   name: ansible
   playbooks:
     converge: ../default/converge.yml
   inventory:
+    host_vars:
+      rockylinux-8:
+        system_language: 'en_GB.utf8'
     group_vars:
       all:
         system_locales:
@@ -56,15 +18,5 @@ provisioner:
         system_language: 'en_GB.UTF-8'
         system_keymap: 'dvorak-programmer'
         system_font: 'latarcyrheb-sun16'
-    host_vars:
-      archlinux:
-        ansible_user: ansible
-      centos-8:
-        system_language: 'en_GB.utf8'
-      rocky-8:
-        system_language: 'en_GB.utf8'
-
-verifier:
-  name: ansible
 
 ...
