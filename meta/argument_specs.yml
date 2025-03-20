@@ -1,0 +1,27 @@
+---
+
+argument_specs:
+  main:
+    options:
+
+      system_font:
+        type: str
+
+      system_keymap:
+        type: str
+
+      system_language:
+        type: str
+
+      system_locales:
+        type: list
+        elements: dict
+        options:
+          name:
+            required: yes
+            type: str
+          charset:
+            required: yes
+            type: str
+
+...
