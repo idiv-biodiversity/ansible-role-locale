@@ -5,40 +5,17 @@
 
   pre_tasks:
 
-    - name: show discovered python interpreter
-      ansible.builtin.debug:
-        var: ansible_facts.discovered_interpreter_python
+    - name: show debug information
+      ansible.builtin.include_role:
+        name: idiv_biodiversity.molecule_helpers.info
 
-    - name: show discovered package manager
-      ansible.builtin.debug:
-        var: ansible_facts.pkg_mgr
-
-    - name: update package cache (Arch Linux)
-      community.general.pacman:
-        update_cache: yes
-      when:
-        - ansible_facts.os_family == 'Archlinux'
-      become: yes
-      changed_when: no
-      register: __update_package_cache
-      until: __update_package_cache is success
-      retries: 10
-      delay: 2
-
-    - name: update package cache (other distros)
-      ansible.builtin.package:
-        update_cache: yes
-      when:
-        - ansible_facts.os_family != 'Archlinux'
-      become: yes
-      changed_when: no
-      register: __update_package_cache
-      until: __update_package_cache is success
-      retries: 10
-      delay: 2
+    - name: update package cache
+      ansible.builtin.include_role:
+        name: idiv_biodiversity.molecule_helpers.package_cache
 
   tasks:
-    - name: include role idiv_biodiversity.locale
+
+    - name: include the role
       ansible.builtin.include_role:
         name: idiv_biodiversity.locale
 
