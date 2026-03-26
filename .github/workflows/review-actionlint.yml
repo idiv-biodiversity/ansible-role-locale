@@ -1,9 +1,12 @@
 ---
 
-name: review GitHub actions
+name: Review GitHub Actions
 
 on:
   pull_request:
+    paths:
+      - .github/workflows/*.ya?ml
+  push:
     paths:
       - .github/workflows/*.ya?ml
 
