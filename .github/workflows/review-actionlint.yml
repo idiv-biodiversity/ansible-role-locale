@@ -17,6 +17,6 @@ jobs:
       - name: checkout repo
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - name: run actionlint
-        uses: reviewdog/action-actionlint@2a3d15f30203210ae8cc1d5436cdcdf6992dec5b # v1.71.0
+        uses: reviewdog/action-actionlint@d39025c0fb1cc41ac827852403ea94804b0e6907 # v1.71.0
 
 ...
